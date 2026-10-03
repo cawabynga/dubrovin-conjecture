@@ -1,0 +1,154 @@
+\documentclass[a4paper, 10pt]{article}
+\usepackage[T1, T2A]{fontenc}
+\usepackage[utf8]{inputenc} 
+\usepackage[english, russian]{babel}
+\usepackage{amsfonts,amssymb,amsthm,mathtools,amsmath}
+\usepackage{indentfirst} 
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{biblatex}
+\usepackage{geometry}
+\addbibresource{lit.bib}
+
+
+\geometry{
+	a4paper,
+	total={170mm,257mm},
+	left=20mm,
+	top=20mm,
+}
+\theoremstyle{plain}
+\newtheorem*{pro}{Доказательство}
+\newtheorem*{ex}{Пример}
+\newtheorem{lem}{Лемма}
+\newtheorem{theorem}{Теорема}
+\newtheorem{defin}{Определение}
+\newtheorem*{rem}{Замечание}
+\newtheorem*{sled}{Следствие}
+\newcommand{\defeq}{:=}
+\newcommand{\tang}[1][\hspace{0pt}]{\frac{\partial }{\partial #1}}
+\newcommand\Lie{\operatorname{Lie}}
+\newtheorem{remark}{Remark}
+
+\newcommand{\wt}{\operatorname{wt}}
+
+
+\title{$D_N$ аналог леммы 3}
+\author{}
+\date{}
+
+\begin{document}
+	\maketitle
+	\begin{gather*}
+		f_{D_N}(x,y)=x^{N-1}+xy^2, \qquad \Rightarrow \qquad
+		A_0 =	\frac{\mathbb{C}[x,y]}{\left( (N-1) \cdot x^{N-2}+y^2, 2xy\right)}\\
+	\end{gather*}
+	используем базис \((1,x,x^2,\ldots,x^{N-2},y)\), поэтому в нуле\[
+	xy=0,\qquad	y^2=-(N-1)x^{N-2},\qquad x^{N-1}=0.\]
+Пусть даны однородные координаты на \(M = (s_0,s_1,\ldots,s_{N-2},\tau)\), c  соответствующими векторными полями
+	\begin{gather*}
+		e_0,e_1,\ldots,e_{N-2},h, \qquad	e_r=\frac{\partial}{\partial s_r},\qquad	h=\frac{\partial}{\partial \tau},\\
+		e_r\longleftrightarrow x^r, \qquad	h\longleftrightarrow y.
+	\end{gather*}
+	В частности, 
+	\begin{equation}
+		e_a\circ e_b=e_{a+b}
+		\qquad\text{для }a+b\le N-2.
+		\label{eq:low_product}
+	\end{equation}
+Пусть есть фундаментальное соотношение редукции
+	\begin{equation}
+		e_1^{\circ(N-1)}
+		=
+		\sum_{k=0}^{N-2}\alpha_k(s,\tau)e_k
+		+\beta(s,\tau)h, \quad \text{где } \quad \alpha_k(0)=0,\qquad\beta(0)=0.
+		\label{eq:fundamental_relation} 
+	\end{equation}
+	\(
+			\wt(x)=\frac1{N-1}, \wt(y)=\frac{N-2}{2(N-1)}
+		\Rightarrow
+		\wt(e_r)=\frac r{N-1}, \wt(h)=\frac{N-2}{2(N-1)},
+		\wt(s_r)=1-\frac r{N-1}, \wt(\tau)=\frac{N}{2(N-1)}.
+	\)
+	Так как  \eqref{eq:fundamental_relation} имеет вес  $1$, получаем
+	\(\wt(\alpha_k)=1-\frac{k}{N-1}=\wt(s_k).\)
+	Следовательно, для $r,k\in\{1,\ldots,N-2\}$, верно
+	\begin{equation}
+		\left.\frac{\partial\alpha_k}{\partial s_r}\right|_0=0 \qquad\text{если }k\ne r.
+		\label{eq:weight_diagonal}
+	\end{equation}
+	\begin{equation}
+		\begin{aligned}
+			&\text{Определим }B_r:=
+			\left.\frac{\partial\alpha_r}{\partial s_r}\right|_0,
+			\qquad r=1,\ldots,N-2.
+			\label{eq:Br_def}
+		\end{aligned}
+	\end{equation}
+	
+	\begin{lem}[$D_N$]
+		\[B_r=rB_1,\text{для } r=1,\ldots,N-2.
+		\text{ Эквивалентно, } B_1:B_2:\cdots:B_{N-2}=1:2:\cdots:(N-2).\]
+	\end{lem}
+	\begin{proof}
+		Пусть $m_s$ тензор умножения в точке $s=(s_0,\ldots,s_{N-2},\tau)$ и
+		\[D_r:=\left.\frac{\partial m_s}{\partial s_r}\right|_{s=0}=\bigl(\Lie_{e_r}(\circ)\bigr)_0.\]
+		$D_r$ симмертческое билинейное отображение \(D_r:T_0M\times T_0M\longrightarrow T_0M.\)
+		Выберем $p,q\ge 1$ т.ч.\(p+q=N-1\), из ассоциативности и \eqref{eq:fundamental_relation},
+		\[e_p\circ e_q=e_1^{\circ(N-1)}
+		=
+		\sum_{k=0}^{N-2}\alpha_k(s,\tau)e_k
+		+\beta(s,\tau)h.\]
+		Дифференцируя по $s_r$ в нуле и используя  \eqref{eq:weight_diagonal}, получаем
+		\begin{equation}
+			D_r(e_p,e_q)=B_r e_r+\lambda_r h,
+			\label{eq:Dr_boundary}
+		\quad \text{где }\lambda_r:=
+		\left.\frac{\partial\beta}{\partial s_r}\right|_0.
+	\end{equation}
+	Теперь, для нечетного \(N\), все \(\lambda_r = 0\) из градуировки,  для четного же \(N\), только для одного \(r\) возможно $\lambda_r = \left.\frac{\partial\beta}{\partial s_r}\right|_0\ne0$ \par
+		Пусть теперь $a,b\ge1$ и $a+b\le N-2.$ Из \eqref{eq:low_product},
+		\(e_a\circ e_b=e_{a+b}.\)
+		Применим условие интегрируемости
+		\[\Lie_{X\circ Y}(\circ)
+		=
+		X\circ\Lie_Y(\circ)+Y\circ\Lie_X(\circ)\]
+		с $X=e_a$ и $Y=e_b$, и ограничим в ноль. Получаем
+		\begin{equation}
+			\begin{aligned}
+			D_{a+b}(U,V) = \bigl(\Lie_{e_{a+b}}(U\circ V)\bigr)_0
+			=&
+			\bigl(e_a \circ \Lie_{e_b}(U\circ V)\bigr)_0 + \bigl(\Lie_{e_a}(U\circ V) \circ e_b\bigr)_0
+			=\\=&
+			e_a\circ_0D_b(U,V)
+			+e_b\circ_0D_a(U,V)
+			\label{eq:HM_linearized} 
+			\qquad \forall U,V\in T_0M.
+		\end{aligned}
+		\end{equation}
+		
+		Возьем $U=e_p$ и $V=e_q$. По \eqref{eq:Dr_boundary}, слева получаем
+		\[
+		D_{a+b}(e_p,e_q)
+		=B_{a+b}e_{a+b}+\lambda_{a+b}h.
+		\]
+		Справа,
+		\begin{align*}
+			e_a\circ_0D_b(e_p,e_q)
+			&=e_a\circ_0(B_b e_b+\lambda_bh) = B_b e_{a+b} + \lambda_b e_a \circ h,\\
+			e_b\circ_0D_a(e_p,e_q)
+			&=e_b\circ_0(B_a e_a+\lambda_ah) = B_a e_{a+b} + \lambda_a e_b \circ h.
+		\end{align*}
+		Заметим, что 
+		\(e_c\circ_0 h=0 \text{ для любого }c\ge1,\)
+		другими словами $x^cy=0$, что следует из $2xy=0$.
+		Значит, произведения, содержащие \(\lambda\) в \eqref{eq:HM_linearized} исчезают. 
+		\[
+		B_{a+b} e_{a+b} = B_be_{a+b}+B_ae_{a+b} \qquad (a,b \ge 1, a+b \le N-2)
+		\]
+		Сравнивая коэффициенты и делая индукцию получаем
+		\[
+		B_r=rB_1,\qquad r=1,\ldots,N-2.
+		\]
+	\end{proof}
+\end{document}

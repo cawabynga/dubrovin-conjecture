@@ -1,0 +1,526 @@
+\documentclass[a4paper, 10pt]{article}
+\usepackage[T1, T2A]{fontenc}
+\usepackage[utf8]{inputenc} 
+\usepackage[english, russian]{babel}
+\usepackage{amsfonts,amssymb,amsthm,mathtools,amsmath}
+\usepackage{indentfirst} 
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{biblatex}
+\usepackage{geometry}
+\addbibresource{lit.bib}
+
+
+\geometry{
+a4paper,
+total={170mm,257mm},
+left=20mm,
+top=20mm,
+}
+\theoremstyle{plain}
+\newtheorem*{pro}{Доказательство}
+\newtheorem*{ex}{Пример}
+\newtheorem{lem}{Лемма}
+\newtheorem{theorem}{Теорема}
+\newtheorem{defin}{Определение}
+\newtheorem*{rem}{Замечание}
+\newtheorem*{sled}{Следствие}
+\newcommand{\defeq}{:=}
+\newcommand{\tang}[1][\hspace{0pt}]{\frac{\partial }{\partial #1}}
+\newcommand\Lie{Lie}
+
+\begin{document}
+\begin{center}
+	{\scshape Федеральное государственное автономное\\
+	образовательное учреждение высшего образования\\
+	<<Национальный исследовательский университет\\
+	<<Высшая школа экономики>>\\[1ex]
+	Факультет математики}\par
+	\par\vfill
+	\textbf{\large Корочков Николай Алексеевич}
+	\vspace{1.5cm}
+	{\Large\bfseries
+	Полиномиальные многообразия Дубровина-Фробениуса \par}
+	\vspace{1.5cm}
+	Курсовая работа студента 3 курса\\[1ex]
+	образовательной программы бакалавриата <<Математика>>
+	\par\vfill
+	\noindent\hspace{0.52\textwidth}\parbox[t]{0.48\textwidth}{%
+	Научный руководитель:\\[3pt]
+	доцент,\\
+	к.ф.м.н. Басалаев Алексей Андреевич\\[2ex]
+	}%
+	\par\vfill
+	Москва 2026
+\end{center}
+\thispagestyle{empty}
+\pagebreak
+\section{Введение.}
+Данная работа предлагает доказательство гипотезы Бориса Дубровина для особого вида многообразий с коммутативным ассоциативным умножением в касательном пространстве, называемых полиномальными многообразиями Дубровина-Фробениуса. Гипотеза для особенности типа \(A\) заключается в следующем: 
+\begin{center}
+\textbf{
+    Всякое неприводимое полупростое в общем полиномиальное многообразие Дубровина-Фробениуса, квазиоднородное с градуировкой \(M_{A_\mu}\) изоморфно многообразию Дубровина-Фробениуса для особенности типа \(A\).
+    }
+\end{center}
+Доказательство основывается на приведении алгебр \(T_pM\) к особому виду и представлению их как фактор алгебр по некоторому многочлену и последующей работой с градуировкой и условием интегрируемости для умножения.
+\section{Постановка задачи.}
+\begin{defin}[МДФ]
+    Полиномиальное многообразие Дубровина-Фробениуса (МДФ) это риманово многообразие \((M, g)\), \(\operatorname{dim}(M) = \mu\) с гладкой структурой фробениусовой алгебры \((T_pM, \circ, e)\) в каждом касательном пространстве, для него выполнено несколько условий
+\end{defin}
+\iffalse
+\begin{equation}
+\label{integr}
+\begin{gathered}
+    \operatorname{Lie}_{X\circ Y}(\circ) = X\circ \operatorname{Lie}_Y(\circ) + Y\circ \operatorname{Lie}_X(\circ)
+\end{gathered}
+\end{equation}
+\fi
+Мы будем смотреть на эти алгебры как на векторные касательные пространства снабжённые ассоциативным умножением.\par
+Одно условие это квазиоднородность этого умножения: существует нормализованная квазиоднородная полиномиальная функция \(\mathcal{F}: M \to \mathbb{C}\) называемая потенциалом, такая что  \begin{equation}
+    \begin{gathered}
+        \tang[s^\alpha] \circ \tang[s^\beta] = c^\gamma_{\alpha\beta}\tang[s^{\gamma}]\\
+        c_{\alpha\beta\gamma}(t) = \dfrac{\partial^3 \mathcal{F}}{\partial s^{\alpha}\partial s^{\beta}\partial s^{\gamma}}\\
+        c^\gamma_{\alpha\beta} = \eta^{\gamma\epsilon}c_{\epsilon\alpha\beta}(s)
+    \end{gathered}
+\end{equation}
+Где
+\[
+\eta_{\alpha\beta} \defeq c_{0\alpha\beta}(s)
+\]
+является постоянной невырожденной матрицей, и
+\[
+(\eta^{\alpha\beta}) \defeq (\eta_{\alpha\beta})^{-1}.
+\]
+Мы будем использовать матрицы \((\eta_{\alpha\beta})\) и \((\eta^{\alpha\beta})\) для поднятия и опускания индексов. Второе условие это требование конкретного вида матрицы \(\eta\):
+\begin{gather} \eta_{\alpha\beta} = \eta(\tang[s^\alpha], \tang[s^\beta]) = c_{0\alpha\beta} = \delta^{\alpha + \beta}_{\mu-1}
+\end{gather}
+Само условие квазиоднородности выражается ввиде следующего равенства:
+\[\mathcal{F}(c^{d_0}s^0, \dots, c^{s_{\mu-1}}s^{\mu-1}) = d_\mathcal{F}\mathcal{F}(s^0,\dots, s^{\mu-1})\]
+для любого \(c \in \mathbb{C}\) и некоторых фиксированных констант \(d_0, \dots, d_{\mu-1}, d_\mathcal{F} \in \mathbb{C}\)\par
+Из существования спаривания векторов и явного вида этого спаривания верно, что \[\forall \alpha, \beta; \alpha + \beta = \mu - 1:\tang[s^\alpha]\circ \tang[s^\beta] = \tang[s^{\mu-1}] + \dots\]
+В мы будем называть \(\tang[s^{\mu-1}]\) цоколем.
+\par
+\begin{rem}
+    Обычно квазиоднородность задается существованием эйлерова поля.\par
+\end{rem}
+\begin{defin}[Эйлерово поле]
+    Поле \(E = E^\alpha(s)\tang[s^\alpha]\) называется элеровым если \[\operatorname{Lie}_E \mathcal{F} \defeq E^\alpha \partial_\alpha \mathcal{F} = d_\mathcal{F} \cdot \mathcal{F}\]
+\end{defin}
+Для требуемой квазиоднородности, \(E\) должно иметь вид \[E = \sum_\alpha d_\alpha s^\alpha\tang[s^\alpha]\]
+\begin{defin}[Изоморфизм]
+    Два многообразия Дубровина-Фробениуса изоморфны если они изоморфны как гладкие многообразия и индуцированные отображения касательных пространств это изоморфизмы фробениусовых алгебр, то есть уважают структуры умножения \(\circ\) и спаривания \(\eta\).
+\end{defin}
+Многообразия Дубровина-Фробениуса удобно представлять в виде семейств фактор-алгебр по некоторому многочлену.
+\begin{defin}[Градуировка МДФ]
+Градуировка в касательном пространстве индуцируется эйлеровым полем и, следовательно, градуировкой на \(\mathcal{O}_{L_M}\).
+Пусть \(M=\mathbb C^\mu\) с координатами \(s_0,\ldots,s_{\mu-1}.\)
+Положим
+\[
+e_i=\frac{\partial}{\partial s_i},
+\qquad i=0,\ldots,\mu-1.
+\]
+Пусть \( y_0,\ldots,y_{\mu-1}\) это координаты в слоях \(T^*M\), двойственные к базису \(e\). Тогда каноническая \(1\)-форма на \(T^*M\) имеет вид
+\[
+\alpha=\sum_{j=0}^{\mu-1}y_j\,ds_j.
+\]
+Определим идеал \(\mathcal{I}_M\) как \[\mathcal{I}_M \defeq \left(y_0 - 1, y_iy_j - \sum c_{ij}^k(s)y_k\right)\]
+\(\mathcal{I}_M\) задает структуру на \(T_pM\) следующим образом:\[T_pM \simeq \mathbb{C}[y_0, \dots, y_{\mu-1}]\Big/\mathcal{I}_M\]
+Аналитический спектр, то есть множество точек, где каждая \(f \in \mathcal{I}_M\) зануляется, обозначим через
+\[
+L_M=\operatorname{Spec}^{an}_{\mathcal O_M}(T_M,\circ)\subset T^*M, \qquad \mathcal{O}_{L_M} = \left(\mathcal{O}_{T_pM}\Big/\mathcal{I}_M\right)\Big|_{L_M}
+\]
+Отображение \(\boldsymbol{\operatorname{a}}:T_M \rightarrow \pi_*\mathcal{O}_{L_M}\) определим так:
+\[\boldsymbol{\operatorname{a}}(X)=\alpha(X)|_{L_M}\]
+Теперь вычислим это отображение на базисном векторе \(e_i\)
+\begin{gather*}
+    \alpha(e_i) = \sum_{j=0}^{\mu-1}y_j\,ds_j(e_i)\\
+    ds_j(e_i) = ds_j\left(\frac{\partial}{\partial s_i}\right) = \delta_{ij}\\
+    \Downarrow\\
+    \alpha(e_i)=y_i\\
+    \Downarrow\\
+    \boldsymbol{\operatorname{a}}(e_i)=\alpha(e_i)|_{L_M}=y_i|_{L_M}.
+\end{gather*}
+
+Таким образом, \(\boldsymbol{\operatorname{a}}\) отправляет касательный вектор \(e_i\) в соответствующую двойственную координату \(y_i\), ограниченную на аналитический спектр.
+
+
+Вес на \(TM\) определяется переносом веса с
+\(\mathcal O_{L_M}\) через изоморфизм
+\[\boldsymbol{\operatorname{a}}:T_M\longrightarrow \pi_*\mathcal O_{L_M}.\]
+То есть для однородного векторного поля \(X\in TM\) положим
+\begin{gather*}
+\operatorname{wt}_{TM}(X)\defeq \operatorname{wt}_{\mathcal O_{L_M}}(\boldsymbol{\operatorname{a}}(X))\\
+\Downarrow\\
+\operatorname{wt}_{TM}(e_i) = \operatorname{wt}_{\mathcal{O}_{L_M}}(a(e_i)) = \operatorname{wt}_{\mathcal{O}_{L_M}}(y_i|_{L_M}), \text{так как } a(e_i)=y_i|_{L_M}
+\end{gather*}
+Вес \(c_{ij}^k\) определяется из умножения:
+\begin{gather*}e_i\circ e_j = \sum c^k_{ij} e_k \\
+\Downarrow\\
+\operatorname{wt}(c^k_{ij}) = \operatorname{wt}(e_i) + \operatorname{wt}(e_j) - \operatorname{wt}(e_k)\end{gather*}
+\end{defin}
+Нам понадобятся еще несколько определений.
+\begin{defin}[Полупростое МДФ]
+    Пусть \(M\) это полиномиальное МДФ. Мы будем называть точку \(p \in M\) полупростой если алгебра \(T_pM\) полупростая. То есть существуют такие координаты \(t_0, \dots, t_{\mu-1}\), что умножение в точке \(p\) имеет вид \[\tang[t^\alpha]\circ_p\tang[t^\beta] = \delta^\alpha_\beta\]
+    Многообразие будем называть полупростым если существуют такие глобальные координаты \(t\), что в каждой точке умножение полупросто.
+\end{defin}
+\begin{defin}[Полупросте в общем МДФ]
+    Если умножение полупросто для общей точки, то многообразие называется полупростым в общем.
+\end{defin}
+В \cite{hertling1999multiplicationtangentbundle} полупростые в общем многообразия называются массивными.
+\begin{defin}[Неприводимое МДФ]
+    Многообразие Дубровина-Фробениуса называется приводимым, если существуют такие координаты \(t_0, \dots, t_{\mu-1}\), такие что каждая из алгебр \(T_pM\) разбивается на неприводимые компоненты \(A_{k_1}, \dots, A_{k_l},\quad TpM = \bigoplus_i A_{k_i}, \quad A_{k_i}\circ A_{k_j} = 0\) где \(k_1, \dots, k_l\) это некоторое разбиение \(t_0, \dots, t_{\mu-1}\).
+\end{defin}
+\begin{defin}[F-manifold]
+    F-многообразием называется комплексное голоморфное многообразие с коммутативным, ассоциативным \(\mathcal{O}_M\)-билинейным умножением \(\mathcal{T}_M \times \mathcal{T}_M \to \mathcal{T}_M\) и с единичным полем \(e\), такое что 
+    \begin{gather}\label{integr}
+         \operatorname{Lie}_{X\circ Y}(\circ) = X\circ \operatorname{Lie}_Y(\circ) + Y\circ \operatorname{Lie}_X(\circ)
+    \end{gather}
+\end{defin}
+Легко заметить, что любое многообразие Дубровина-Фробениуса это F-многообразие.
+В данном случае эйлерово поле это такое поле \(E\), что \(\operatorname{Lie}_E(\circ) = 1 \cdot \circ\)
+\section{Многообразия простых особенностей.}
+Зачастую многообразие задаётся ассоциированной с ним простой особенностью.\\
+Рассмотрим простую особенность типа \(A_{\mu}\) заданную многочленом \(f_{A_{\mu}} = \frac{1}{\mu+1}x^{\mu +1}\). Ассоциированное с ним многообразие Дубровина-Фробениуса определим так:\par 
+рассмотрим многочлен \[\Lambda = f_{A_{\mu}} + \sum_{0 \leq k < \mu} s_k x^k\] и фактор \[\mathbb{C}[x, s_0, s_1, \dots, s_\mu]\Big/(\partial_x \Lambda)\]  
+
+Для многообразия \(M = \mathbb{C}^{\mu} = (s_0, s_1, \dots, s_{\mu-1})\), касательным векторам \(\tang[s^m]\) сопоставляются соответствующие частные производные многочлена \(\Lambda\), \(\tang[s^m] \mapsto	\dfrac{\partial\Lambda}{\partial s^m}\). Умножение задается умножением в кольце многочленов \(\mathbb{C}[x, s_0, \dots, s_{\mu-1}]/\partial_x \Lambda\).
+\[\tang[s^a]\circ\tang[s^b] = \dfrac{\partial\Lambda}{\partial s^a} \cdot \dfrac{\partial\Lambda}{\partial s^b}, \operatorname{modulo} \partial_x\Lambda\]
+
+\subsection{Градуировка многообразия \(M_{A_\mu}\)}
+В случае \(A_\mu\), \(\Lambda(x,s)=\dfrac{x^{\mu+1}}{\mu+1}+\sum_{i=0}^{\mu-1}s_i x^i.\)
+Касательная алгебра имеет вид\[\mathbb{C}[x,s_0,\ldots,s_{\mu-1}]\Big/
+\left(\frac{\partial\Lambda}{\partial x}\right)\]
+\[
+e_i=\frac{\partial}{\partial s_i}
+\longmapsto
+\frac{\partial\Lambda}{\partial s_i}
+=
+x^i.
+\]
+Следовательно, на стороне аналитического спектра \(y_i|_{L_M}=x^i\)
+Поэтому
+\[\operatorname{wt}_{T_M}(e_i)=\operatorname{wt}_{\mathcal O_{L_M}}(x^i).\]
+А значит
+\begin{equation} \label{grad}
+\begin{gathered}
+\operatorname{wt}(x)=\frac{1}{\mu+1}\Rightarrow\\
+\Rightarrow \operatorname{wt}(e_i)=\frac{i}{\mu+1}\Rightarrow\\
+\Rightarrow \operatorname{wt}(s_i)=1-\frac{i}{\mu+1}.
+\end{gathered}
+\end{equation}
+Сформулируем и докажем следующую лемму.
+\begin{lem}\label{lem1}
+Пусть дано некоторое многообразие Дубровина-Фробениуса \((M, \circ)\) размерности \(\mu\) с градуировкой \(A_\mu\).
+\begin{enumerate}
+    \item Существует семейство фактор алгебр, зависящих от \(s\), таких что 
+    \[T_pM \simeq B = \mathbb{C}[x, s_0, \dots,s_{\mu-1}]/(x^{\mu} + \sum \alpha_k x^k), \text{где } \alpha_i \in \mathbb{C}[s_0, \dots, s_{\mu-1}]\]
+    \item Для любого изоморфизма \(\mathbb{Q}\)-градуированных алгебр \(\varphi:T_0M \rightarrow B|_0\), выполнено \(\varphi\left(\dfrac{\partial}{\partial s^\alpha}\right) = c_\alpha x^i\)
+\end{enumerate}
+\end{lem}
+\begin{proof}
+   \(T_pM\) порождено касательными векторами \(\langle \partial/\partial s^0, \dots, \partial/\partial s^{\mu-1} \rangle\) c соотношениями \[\tang[s^\alpha] \circ \tang[s^\beta] = c^\gamma_{\alpha\beta}\tang[s^{\gamma}]\]
+   Построим в \(T_pM\) новый базис \[\{e_0, e_1, \dots, e_1^{\mu-1}\}\] индуктивно. \par
+   \paragraph{База индукции: $k=0,1$}
+    \begin{itemize}
+        \item $e_0 = 1\cdot e_0$;
+        \item $e_1 = 1\cdot e_1$.
+    \end{itemize}
+    Коэффициенты полиномиальны (константы).
+    Для изоморфизма $\varphi$:
+    \begin{itemize}
+        \item $\varphi(e_0)=\varphi(1)=1=c_0x^0$ $(c_0=1\neq 0)$;
+        \item $\varphi(e_1)=c_1x; \quad c_1\in \mathbb{C}\setminus\{0\})$, так как
+        \(\operatorname{wt}(e_1)=\frac{1}{n+1}=\operatorname{wt}(x),\)
+        а элементов с меньшим весом или хотя бы таким же нет.
+    \end{itemize}
+База доказана.
+\paragraph{Переход}
+   Пусть \(\forall j \leq k\) такой базис есть, тогда \begin{gather*}
+       \operatorname{wt}(e_k\cdot e_1) = \dfrac{k}{\mu + 1} + \dfrac{1}{\mu + 1} = \dfrac{k + 1}{\mu + 1}\\
+       \operatorname{wt}(c^t_{k1}) = \dfrac{k+1}{\mu+1} - \dfrac{t}{\mu +1} = \dfrac{k+1-t}{\mu + 1} \text{ или } c^t_{k1} = 0
+   \end{gather*}
+   Выразим \(e_{k+1}\): 
+   \begin{align*}
+       e_k \cdot e_1 = c_{k1}^{k+1} e_{k+1} + \sum^k_{t = 0} c^t_{k1} e_t &\Rightarrow\\
+       \Rightarrow & \hspace{3pt}e_{k+1} = \dfrac{1}{c_{k1}^{k+1}} \left( e_k\cdot e_1  - \sum^k_{t = 0} c^t_{k1} e_t \right)
+   \end{align*}
+   \begin{rem}
+       \(c^t_{k1}(0) = 0\) если \(t \neq k+1\), а \(0 \neq c^{k+1}_{k1} = const \in \mathbb{C}\)
+   \end{rem}
+   \begin{proof}
+       \begin{itemize}
+           \item \(t > k+1 \Rightarrow\operatorname{wt}(c^t_{k1}) < 0 \Rightarrow  c^t_{k1} = 0\)
+           \item \(t < k+1 \Rightarrow\operatorname{wt}(c^t_{k1}) > 0 \Rightarrow c^t_{k1}(0) = 0\), так как зануляются свободные члены.
+           \item \(t = k+1 \Rightarrow\operatorname{wt}(c^t_{k1}) = 0 \Rightarrow c^t_{k1} = const\)\\
+           Пользуясь предыдущими пунктами при ограничении в ноль получаем \[e_ke_1 = c_{k1}^{k+1}e_{k+1}\] так как все остальное обращается в ноль. Для изоморфизма \(\varphi\) по предположению индукции получаем 
+           \[c_{k1}^{k+1}\varphi(e_{k+1}) = \varphi(c_{k1}^{k+1}e_{k+1}) =\varphi(e_ke_1) = \varphi(e_k)\varphi(e_1) = c_kc_1x^{k+1} \neq 0 \Rightarrow c_{k1}^{k+1} \neq 0\]
+       \end{itemize}
+   \end{proof}
+   Из этого замечания выражение выше корректно. Значит, пользуясь предположением индукции получаем, что \(e_{k+1}\) выражается через \(e_0, e_1, \dots, e_1^{k+1}\).\\
+   Рассмотрим исходное структурное равенство в новом базисе:
+   \[e_{\mu-1} e_1 = \sum_{k = 0}^{\mu -1} c^k_{n-1,1} e_k\]
+   Подставляя выражения для \(e_{\mu -1}, e_k\) через степени \(e_1\) и приводя подобные получаем: \[e_1^{\mu}- \sum^{\mu -1}_{k = 0}\alpha_k(s) = 0, \quad \alpha_k(s) \in \mathbb{C}[s_0, \dots, s_{\mu-1}]\]
+   Т.е. имеет место изоморфизм
+   \[T_pM \simeq \mathbb{C}[x, s_0, \dots,s_{\mu-1}]/(x^{\mu} + \sum \alpha_k x^k), \text{где } \alpha_i \in \mathbb{C}[s_0, \dots, s_{\mu-1}],\] устанавливающий взаимно-однозначное соответствие между базисами \(\{1, x, \dots, x^{\mu-1}\}\) и \(\{e_0, e_1, \dots, e^{\mu-1}_1\}\).
+\end{proof}
+\section{Гипотеза Дубровина.}
+Сформулируем основную гипотезу. \par 
+\begin{center}
+    \textbf{
+        Всякое неприводимое полупростое в общем полиномиальное МДФ, квазиоднородное с градуировкой \(M_{A_\mu}\)(\ref{grad}) изоморфно МДФ для особенности типа \(A\)}
+\end{center}
+Рассмотрим частный пример.
+\subsection{\texorpdfstring{\(\operatorname{dim}(M) = 2\)}{2}}
+Пусть алгебра \(T_{(s_0, s_1)}M\) изоморфна алгебре \(\mathbb{C}[x, s_0, s_1]\Big/(x^2 - \varphi(s)\cdot \mathbf{1})\) с градуировкой \[\operatorname{wt}(x) = \dfrac{1}{3} \hspace{20pt} \operatorname{wt}(s_i) = \dfrac{3 - i}{3}\]
+Из условий градуировки мы можем получить что \[\operatorname{wt}(\varphi(s)) = \operatorname{wt}(x^2) = \dfrac{2}{3} \Rightarrow \text{ т.к.} \varphi \in \mathbb{C}[s_0, s_1] \text{ и квазиоднороден, то } \varphi = \lambda \cdot s_1\]
+Если \(\lambda = 0\), то многообразие не удовлетворяет изначальному условию. Значит такая конструкция невозможна, а значит \[T_pM \simeq \mathbb{C}[x, s_0, s_1]\Big/(x^2 - \lambda s_1\cdot \mathbf{1}) \simeq T_pM_{A_2}\]
+\iffalse
+\subsection{\texorpdfstring{\(\operatorname{dim}(M) = 3\)}{3}}
+Если \(\operatorname{dim}(M) = 3\), то алгебра \(T_{s}M \simeq A_s\) изоморфна \[\mathbb{C}[x, y, s_0, s_1, s_2]/\left( \begin{aligned} 
+x^2 = \dots\\
+y^2 = \dots
+\end{aligned}\right)\]
+\fi
+
+
+\section{Основная теорема.}
+Пусть \(M\) полупросто в общем, а значит не полупросто везде и неприводимо. Тогда имеет место следующая теорема.
+\begin{theorem}
+    Для полупростого в общем неприводимого многообразия \(M\), для которого выполнено
+    \[
+    T_pM \simeq \mathbb{C}\left[x, s_0, \dots, s_{\mu - 1}\right]/\left(x^{\mu} - \sum_{k = 0}^{\mu - 2} \pi_k s_{k+1} \cdot x^k\right), \text{где } \pi_k \in \mathbb{C}
+    \]  Тогда \(M\) изоморфно многообразию простой особенности \(A_{\mu}\).
+\end{theorem}
+\begin{proof}
+    Заметим, что если \(\exists j, \pi_j = 0\), то производная Ли умножения \(\circ\) по полю \(\tang[e_{j+1}]\) равна 0, так как умножение не зависит в принципе от \(s_{j+1}\).\[\operatorname{Lie}_{e_{j+1}}(\circ) = 0\], а значит \(e_{j+1}\) эйлерово поле веса 0 по определению, а значит является единичным полем \(e_1\), умноженным на некоторую константу \(\mathbf{c}\in \mathbb{C}\) [Теорема 6.2]\cite{hertling1999multiplicationtangentbundle}. Следовательно, \(j=0\), а значит \[\operatorname{Lie}_{e_k}(\circ) = \operatorname{Lie}_{(e_1)^k}(\circ) = 0 \] из \ref{integr}, значит \(\forall k, \pi_k =0 \Rightarrow T_pM \simeq \mathbb{C}\left[x, s_0, \dots, s_{\mu - 1}\right]/ (x^\mu)\), это противоречит нашему предположению о том что \(M\) полупросто в общем, значит все \(\pi_k \neq 0\). Нормализуя, получаем изоморфизм \[ T_pM \simeq \mathbb{C}\left[x, s_0, \dots, s_{\mu - 1}\right]/\left(x^{\mu} - \sum_{k = 0}^{\mu - 2} s_{k+1} x^k\right)\simeq T_pM_{A_\mu}\]
+\end{proof}
+
+Докажем обобщение этого факта для произвольного вида \(T_pM\)
+\par
+Пусть нам дано полиномиальное МДФ \(M\) с градуировкой \(A_\mu\). Пользуясь леммой 1 приведем его к следующему виду:
+\[
+T_pM \simeq \mathbb{C}\left[x, s_0, \dots, s_{\mu - 1}\right]/\left(x^{\mu} - \sum_{k = 0}^{\mu - 1}\alpha_k (s)\cdot x_k\right)
+\]
+Заметим, что исходя из полиномиальности \(M\) и общей квазиоднородности, все \(\alpha_k\) являются многочленами из \(\mathbb{C}[s_0, \dots, s_{\mu-1}]\) и имеют веса \(\operatorname{wt}(\alpha_k) = \dfrac{\mu - k}{\mu + 1}\).\par 
+\begin{lem}\label{lem2}
+    \iffalse Все \(\alpha\), кроме \(\alpha_{\mu - 1}\) имеют вид \(B_i \cdot s_i, B_i \neq 0\), а \(\alpha_{\mu-1} = 0\) \fi
+    \(T_0M \simeq \mathbb C[x]/(x^\mu)\)
+\end{lem}
+Заметим, что из весовых соотношений мы получаем, следующую систему равенств.
+\begin{align*}
+    \operatorname{wt}(\alpha_{\mu - 1}) = & \dfrac{\mu - \mu + 1}{\mu + 1} = \dfrac{1}{\mu + 1}\\
+    \operatorname{wt}(\alpha_{\mu - 2}) = & \dfrac{\mu - \mu + 2}{\mu + 1} = \dfrac{2}{\mu + 1} = \operatorname{wt}(s_{\mu - 1})\\
+    &\dots\\
+    \operatorname{wt}(\alpha_{0}) = & \dfrac{\mu}{\mu + 1} = \operatorname{wt}(s_{1})
+\end{align*}
+Следовательно, так как каждая из \(\alpha_k\) это многочлен \(\mathbb{C}[s_0, \dots, s_{\mu-1}]\) и веса всех \(s_i\) больше чем \(\operatorname{wt}(\alpha_{\mu - 1})\), то \(\alpha_{\mu - 1} = 0\) Представим каждое \(\alpha_k\) в виде линейная часть + высшие степени, не зависящие линейно от \(s\) вообще, в силу градуировки.
+
+\begin{align*}
+    \alpha_{\mu - 2} = B_{\mu - 1}&s_{\mu - 1} + C_{\mu -1}\\
+    &\dots\\
+    \alpha_{0} = B_{1}&s_{1} + C_{1}\\
+    B_i \in \mathbb{C};\hspace{20pt}& \hspace{20pt}\operatorname{deg}C_i > 1
+\end{align*}
+\iffalse Пусть хоть в одной из в одной структурных констант \(\alpha_m\) нет линейного члена соответствующей \(s_j\), т.е. \(B_j = 0\).\par
+Рассмотрим ограничение \( \forall k \neq j;s_k = 0, s_j = D = const \neq 0\). Тогда, на прямой \(P = \{p\in M; s_j = D\}\) многообразие полупросто, так как \[\forall p_0 \in P, \alpha_k(p_0) = 0, C_j(p_0) = 0\]\fi
+А значит в нуле получаем \(\alpha_k(0) = B_{k+1} \cdot 0 + C_{k+1}(0) = 0\) и
+\[
+T_0M \simeq \mathbb C[x]/(x^\mu),
+\].
+
+
+
+
+
+
+
+
+
+
+
+
+\iffalse
+Сделаем следующую замену координат и, соответственно, структурных констант: 
+\[
+\begin{gathered}
+    u_0 = s_0\\
+    u_k = \alpha_{k-1}\\
+    \Downarrow\\
+    T_pM \simeq \mathbb{C}\left[x, s_0, \dots, s_{\mu - 1}\right]/\left(x^{\mu} - \sum_{k = 0}^{\mu - 1}\alpha_k (s)\cdot x^k\right) \simeq \mathbb{C}\left[x, u_0, \dots, u_{\mu - 1}\right]/\left(x^{\mu} - \sum_{k = 0}^{\mu - 2} u_k\cdot x_k\right)
+\end{gathered}
+\]
+
+Заметим что из предположения \(B_j = 0\) следует \(\operatorname{Lie}_{u_{j+1}}(\circ)\big|_{s = u = 0} = 0\), так как при взятии производной и ограничении в ноль в членах со степенями вхождения \(s_j\) не меньше 2ух остается как минимум линейная зависимость от \(u_j\), то есть из \(B_j = 0\) следует \[\operatorname{Lie}_{u_{j}}(\circ)\big|_{s = u = 0} = 0\]
+Пользуясь леммой 2 получаем, что \(\forall j, \)
+\[
+    T_pM \simeq \mathbb{C}\left[x, u_0, \dots, u_{\mu - 1}\right]/\left(x^{\mu}\right)
+\], что противоречит изначальному предположению.
+Тогда 
+\begin{equation}
+\label{part}
+\begin{gathered}
+\forall q;\hspace{10pt}\partial_{s_j}\alpha_q(0) = 0\\
+\Downarrow\\
+(\operatorname{Lie}_{e_j}(\circ))\big|_{s = 0} = 0
+\end{gathered}
+\end{equation}
+Возьмем \(X = Y =e_{j}\) и проверим условие интегрируемости (\ref{itegr}) в \(s = 0\)
+\[
+    \operatorname{Lie}_{e_j^{\circ2}}(\circ)\big|_{s=0} = e_j\circ \operatorname{Lie}_{e_j}(\circ)\big|_{s=0} + e_j\circ \operatorname{Lie}_{e_j}(\circ)\big|_{s=0}
+\]
+Правая часть равна 0 из (\ref{part}). Рассмотрим левую часть подробнее.
+\[e_j^{\circ2} = e_{2j}\]
+Если \(2j \geq \mu\) то используем факт, что \(x^{\mu} - \sum_{k = 0}^{\mu - 1}\alpha_k \cdot x_k = 0\), т.е.
+\[
+e_j^{\circ2} = \sum_{k = 0}^{\mu - 1}\alpha_k(0) \cdot e_k 
+\]
+\fi
+
+
+
+
+
+
+
+
+ 
+
+\begin{lem}\label{lem3}
+    \(B_r=r \cdot B_1\)
+\end{lem}
+\begin{proof}
+Мы знаем, что в окрестности точки $0 \in M$ алгебра касательного пространства имеет вид
+\[
+T_pM \simeq
+\mathbb C[x,s_0,\ldots,s_{\mu-1}]
+\Big/
+\left(
+x^\mu-\sum_{k=0}^{\mu-1}\alpha_k(s)x^k
+\right).
+\]
+В точке $0$ выполнено
+\[
+T_0M \simeq \mathbb C[x]/(x^\mu),
+\]
+и выбранный базис $e_0,\ldots,e_{\mu-1}$ согласован с этим изоморфизмом:
+\[
+e_i|_0 \longleftrightarrow x^i.
+\]
+Тогда в точке $0$ имеем
+\[
+e_a\circ_0 e_b=
+\begin{cases}
+e_{a+b}, & a+b\leq \mu-1,\\
+0, & a+b\geq \mu.
+\end{cases}
+\]
+Из весовых соотношений имеем \(\operatorname{wt}(\alpha_k)=\frac{\mu-k}{\mu+1}\) В частности, \(\operatorname{wt}(\alpha_{\mu-1})=\frac{1}{\mu+1}\) и как среди координат $s_i$ все координаты большего веса, получаем
+\(\alpha_{\mu-1}=0.\)
+Как и в предыдущей лемме \ref{lem2} напишем
+\[\alpha_{r-1}(s)=B_rs_r+C_r(s),\qquad r=1,\ldots,\mu-1,\]
+где $B_r\in \mathbb{C}$, а $C_r$ не содержит линейных членов.
+Обозначим через \(m_s(X,Y):=X\circ_s Y\) умножение в точке $s$. Разложим его в окрестности нуля:
+\[
+m_s=m_0+\sum_{r=1}^{\mu-1}s_rD_r+O(s^2),\quad
+\text{где} \quad
+D_r=
+\left.\frac{\partial m_s}{\partial s_r}\right|_{s=0}
+=
+\left(\operatorname{Lie}_{e_r}(\circ)\right)_0.
+\]
+Здесь $D_r$ есть симметричное билинейное отображение
+\[
+D_r:T_0M\times T_0M\to T_0M.
+\]
+Если $a+b<\mu$, то произведение $e_a\circ e_b$ не требует редукции по соотношению
+$x^\mu=\sum\alpha_k(s)x^k$, поэтому
+\[
+D_r(e_a,e_b)=0
+\qquad
+(a+b<\mu).
+\]
+Если же $a+b=\mu$, то
+\begin{align*}
+e_a\circ e_b=x^\mu=&\sum_{r=1}^{\mu-1}\alpha_{r-1}(s)e_{r-1}.\\
+&\Downarrow\\
+D_r(e_a,e_b&)=B_re_{r-1}\qquad(a+b=\mu).
+\end{align*}
+Теперь применим условие интегрируемости \ref{integr}. Положим
+\[
+X=e_a,\qquad Y=e_b,\qquad
+\text{где }
+a,b\geq 1,\qquad a+b\leq \mu-1.
+\]
+Тогда $e_a\circ e_b=e_{a+b}$, и после ограничения в точку $0$ получаем
+\(D_{a+b} = e_a\circ_0D_b+e_b\circ_0 D_a.\)
+Иными словами, для любых $U,V \in T_0M$ выполнено
+\[D_{a+b}(U,V) = e_a\circ_0D_b(U,V)+e_b\circ_0D_a(U,V).\]
+Возьмём теперь $U=e_p$, $V=e_q$ так, что \(p+q=\mu.\)
+Тогда
+\[D_{a+b}(e_p,e_q)=B_{a+b}e_{a+b-1}.\]
+С другой стороны,\[D_b(e_p,e_q)=B_be_{b-1},\]
+поэтому
+\begin{gather*}
+    e_a\circ_0D_b(e_p,e_q)=B_b(e_a\circ_0e_{b-1})=B_be_{a+b-1}\\
+    e_b\circ_0 D_a(e_p,e_q)=B_a e_{a+b-1}\\
+    \Downarrow\\
+    B_{a+b}e_{a+b-1}=(B_a+B_b)e_{a+b-1}
+\end{gather*}
+Значит, \(B_{a+b}=B_a+B_b\text{ для }(a,b\geq 1,\ a+b\leq \mu-1).\)
+В частности, полагая $a=1$, $b=r-1$, получаем
+\[
+B_r=B_1+B_{r-1}.
+\]
+По индукции отсюда следует \(B_r=r \cdot B_1\) для \(r=1,\ldots,\mu-1.\)
+Итак, имеют место соотношения
+\[
+B_1:B_2:\dots:B_{\mu-1}
+=
+1:2:\dots:(\mu-1).
+\]
+\end{proof}
+\begin{lem} \label{lem4}
+    Существует такое \(q\), что \(B_q \neq 0\)
+\end{lem}
+\begin{proof}
+Посмотрим теперь на \(s_1\). В силу весовых соотношений, \(s_1\) может присутствовать только в \(\alpha_0\), так как вес \(\operatorname{wt}(s_1)\) равен 
+\[\operatorname{wt}(s_{1}) = \dfrac{\mu}{\mu + 1} = \operatorname{wt}(\alpha_{0}) > \operatorname{wt}(\alpha_{k>0})\]
+Значит, если \(B_1=0\), то умножение не зависит от \(s_1\) вовсе, а значит производная Ли по \(e_1\) равна 0. Пользуясь условием интегрируемости, получим что 
+\[\operatorname{Lie}_{e_2}(\circ) = \operatorname{Lie}_{e_1\circ e_1}(\circ) = e_1 \circ \operatorname{Lie}_{e_1}(\circ) + \operatorname{Lie}_{e_1}(\circ) \circ e_1 = 0\]
+Индуктивно получим, что \[\forall k; \operatorname{Lie}_{e_k}(\circ) = 0\]
+а значит \(\forall p; T_pM \simeq \mathbb{C}\left[x, s_0, \dots, s_{\mu - 1}\right]/ (x^\mu)\), а значит многообразие не полупросто нигде, а это противоречит полупростоте в общем.
+Из доказанного по лемме \ref{lem3} следует 
+\[
+\exists q; B_q\neq 0
+\quad\Longrightarrow\quad
+B_r\neq 0
+\text{ для всех }r=1,\ldots,\mu-1.
+\]
+\end{proof}
+\begin{theorem}[Борис Дубровин]
+    Любое неприводимое полупростое в общем полиномиальное МДФ, квазиоднородное с весами  \(\operatorname{wt}(t_i) = \dfrac{i}{\mu+1}, (i = 0, . . . , \mu)\) изоморфно МДФ для особенности типа \(A\)
+\end{theorem}
+\begin{proof}
+    Пользуясь леммой 1, 2 и 3 последовательно, приведем многообразие к виду 
+    \[
+    T_pM \simeq \mathbb{C}\left[x, s_0, \dots, s_{\mu - 1}\right]/\left(x^{\mu} - \sum_{k = 0}^{\mu - 1}\alpha_k (s)\cdot x_k\right)
+    \]
+    , где 
+    \begin{align*}
+        \alpha_{\mu - 2} = B_{\mu - 1}&s_{\mu - 1} + C_{\mu -1}\\
+        &\dots\\
+        \alpha_{0} = B_{1}&s_{1} + C_{1}\\
+        B_i \in \mathbb{C};\hspace{20pt}& \hspace{20pt}\operatorname{deg}C_i > 1
+    \end{align*} и все \(B_j \neq 0\) из лемм \ref{lem3} и \ref{lem4}.
+    Построим изоморфизм явно.
+    \[\begin{gathered}
+        u_0 = s_0\\
+        u_k = \alpha_{k-1}\\
+    \end{gathered}
+    \]
+    Это изоморфизм многообразий Дубровина-Фробениуса, так как ранг этого отображения полный, в силу верхнетреугольности его дифференциала и того что на диагонали его матрицы якоби стоят ненулевые коэффициенты: \[\forall j, \dfrac{\partial u_j}{\partial s_j} = \dfrac{\partial \alpha_{j-1}}{\partial s_j} = B_j \neq 0.\] Значит это диффеоморфизм, а значит 
+    \[T_pM \simeq \mathbb{C}\left[x, s_0, \dots, s_{\mu - 1}\right]/\left(x^{\mu} - \sum_{k = 0}^{\mu - 1}\alpha_k (s)\cdot x^k\right) \simeq \mathbb{C}\left[x, u_0, \dots, u_{\mu - 1}\right]/\left(x^{\mu} - \sum_{k = 0}^{\mu - 2} u_k\cdot x^k\right) \simeq M_{A_\mu}\]
+\end{proof}
+\newpage
+\printbibliography
+\end{document}

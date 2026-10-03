@@ -1,0 +1,115 @@
+\documentclass[a4paper, 10pt]{article}
+\usepackage[T1, T2A]{fontenc}
+\usepackage[utf8]{inputenc} 
+\usepackage[english, russian]{babel}
+\usepackage{amsfonts,amssymb,amsthm,mathtools,amsmath}
+\usepackage{indentfirst} 
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{biblatex}
+\usepackage{geometry}
+\addbibresource{lit.bib}
+
+
+\geometry{
+	a4paper,
+	total={170mm,257mm},
+	left=20mm,
+	top=20mm,
+}
+\theoremstyle{plain}
+\newtheorem*{pro}{Доказательство}
+\newtheorem*{ex}{Пример}
+\newtheorem{lem}{Лемма}
+\newtheorem{theorem}{Теорема}
+\newtheorem{defin}{Определение}
+\newtheorem*{rem}{Замечание}
+\newtheorem*{sled}{Следствие}
+\newcommand{\defeq}{:=}
+\newcommand{\tang}[1][\hspace{0pt}]{\frac{\partial }{\partial #1}}
+\newcommand\Lie{Lie}
+\author{я}
+\title{,,,}
+\begin{document}
+	\maketitle
+		\begin{equation}
+		e_1^{\circ(N)}
+		=
+		\sum_{k=0}^{N-1}\alpha_k(s)e_k \quad \text{где } \quad \alpha_k(0)=0.
+		\label{eq:fundamental_relation} 
+	\end{equation}
+		\begin{equation}
+		\left.\frac{\partial\alpha_k}{\partial s_r}\right|_0=0 \qquad\text{если }k\ne r.
+		\label{eq:weight_diagonal}
+	\end{equation}
+		\begin{equation}
+		e_a\circ e_b=e_{a+b}
+		\qquad\text{для }a+b\le N-1.
+		\label{eq:low_product}
+	\end{equation}
+	\begin{lem}[$A_N$]
+		\[B_r=rB_1,\text{для } r=1,\ldots,N-2.
+		\text{ Эквивалентно, } B_1:B_2:\cdots:B_{N-1}=1:2:\cdots:(N-1).\]
+	\end{lem}
+	\begin{proof}
+		Пусть $m_s$ тензор умножения в точке $s=(s_0,\ldots,s_{N-1})$ и
+		\[D_r:=\left.\frac{\partial m_s}{\partial s_r}\right|_{s=0}=\bigl(\Lie_{e_r}(\circ)\bigr)_0.\]
+		$D_r$ симмертческое билинейное отображение \(D_r:T_0M\times T_0M\longrightarrow T_0M.\)
+		Выберем $p,q\ge 1$ т.ч.\(p+q=N\), из ассоциативности и \eqref{eq:fundamental_relation},
+		\[e_p\circ e_q=e_1^{\circ(N)}
+		=
+		\sum_{k=0}^{N-1}\alpha_k(s)e_k.\]
+		Дифференцируя по $s_r$ в нуле и используя  \eqref{eq:weight_diagonal}, получаем
+		\begin{equation}
+			D_r(e_p,e_q)=B_r e_r,
+			\label{eq:Dr_boundary}
+			\quad \text{где }\lambda_r:=
+			\left.\frac{\partial\beta}{\partial s_r}\right|_0.
+		\end{equation}
+		%Теперь, для нечетного \(N\), все \(\lambda_r\) из градуировки,  для четного же \(N\), только для одного \(r\) возможно $\lambda_r = \left.\frac{\partial\beta}{\partial s_r}\right|_0.\ne0$ \par
+		Пусть теперь $a,b\ge1$ и $a+b\le N-1/$ Из \eqref{eq:low_product},
+		\(e_a\circ e_b=e_{a+b}.\)
+		Применим условие интегрируемости
+		\[\Lie_{X\circ Y}(\circ)
+		=
+		X\circ\Lie_Y(\circ)+Y\circ\Lie_X(\circ)\]
+		с $X=e_a$ и $Y=e_b$, и ограничим в ноль. Получаем
+		\begin{equation}
+			\begin{aligned}
+				D_{a+b}(U,V) = \bigl(\Lie_{e_{a+b}}(U\circ V)\bigr)_0
+				=&
+				\bigl(e_a \circ \Lie_{e_b}(U\circ V)\bigr)_0 + \bigl(\Lie_{e_a}(U\circ V) \circ e_b\bigr)_0
+				=\\=&
+				e_a\circ_0D_b(U,V)
+				+e_b\circ_0D_a(U,V)
+				\label{eq:HM_linearized} 
+				\qquad \forall U,V\in T_0M.
+			\end{aligned}
+		\end{equation}
+		
+		Возьем $U=e_p$ и $V=e_q$. По \eqref{eq:Dr_boundary}, слева получаем
+		\[
+		D_{a+b}(e_p,e_q)
+		=B_{a+b}e_{a+b}.
+		\]
+		Справа,
+		\begin{align*}
+			e_a\circ_0D_b(e_p,e_q)
+			&=e_a\circ_0(B_b e_b) = B_b e_{a+b} \\
+			e_b\circ_0D_a(e_p,e_q)
+			&=e_b\circ_0(B_a e_a) = B_a e_{a+b}.
+		\end{align*}
+		%Заметим, что 
+		%\(e_c\circ_0 h=0
+		%\qquad\text{for every }c\ge1,\)
+		%другими словами $x^cy=0$, что следует из $2xy=0$.
+		%Значит, произведения, содержащие \(\lambda\) в \eqref{eq:HM_linearized} исчезают. 
+		\[
+		B_{a+b} e_{a+b} = B_be_{a+b}+B_ae_{a+b} \qquad (a,b \ge 1, a+b \le N-2)
+		\]
+		Сравнивая коэффициенты и делая индукцию получаем
+		\[
+		B_r=rB_1,\qquad r=1,\ldots,N-2.
+		\]
+	\end{proof}
+\end{document}
