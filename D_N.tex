@@ -135,20 +135,38 @@
 		Справа,
 		\begin{align*}
 			e_a\circ_0D_b(e_p,e_q)
-			&=e_a\circ_0(B_b e_b+\lambda_bh) = B_b e_{a+b} + \lambda_b e_a \circ h,\\
+			&=e_a\circ_0(B_b e_b+\lambda_bh) = B_b e_{a+b} + \lambda_b e_a \circ_0 h,\\
 			e_b\circ_0D_a(e_p,e_q)
-			&=e_b\circ_0(B_a e_a+\lambda_ah) = B_a e_{a+b} + \lambda_a e_b \circ h.
+			&=e_b\circ_0(B_a e_a+\lambda_ah) = B_a e_{a+b} + \lambda_a e_b \circ_0 h.
 		\end{align*}
 		Заметим, что 
 		\(e_c\circ_0 h=0 \text{ для любого }c\ge1,\)
 		другими словами $x^cy=0$, что следует из $2xy=0$.
 		Значит, произведения, содержащие \(\lambda\) в \eqref{eq:HM_linearized} исчезают. 
-		\[
-		B_{a+b} e_{a+b} = B_be_{a+b}+B_ae_{a+b} \qquad (a,b \ge 1, a+b \le N-2)
-		\]
+		\begin{equation}
+		B_{a+b} e_{a+b} = B_be_{a+b}+B_ae_{a+b} = (B_a + B_b)e_{a+b}\qquad (a,b \ge 1, a+b \le N-2) \label{eq:linear_coef}
+		\end{equation}
 		Сравнивая коэффициенты и делая индукцию получаем
 		\[
 		B_r=rB_1,\qquad r=1,\ldots,N-2.
 		\]
+	\end{proof}
+	\begin{lem}
+		Если \(N>4\), то \(\forall r \lambda_r = 0\)
+	\end{lem}
+	\begin{proof}
+		Переписывая \eqref{eq:HM_linearized} так же как в прошлой лемме получаем
+		\begin{equation}
+			B_{a+b}e_{a+b}+\lambda_{a+b}h = (B_a + B_b)e_{a+b} + \lambda_b e_a \circ h + \lambda_a e_b \circ h \qquad (a,b \ge 1, a+b \le N-2)\\
+		\end{equation}
+		Из \(e_c\circ_0 h=0 \text{ для любого }c\ge1,\) и \eqref{eq:linear_coef} получаем 
+		\[\lambda_{a+b} \circ_0 e_{a+b} = 0 \quad (a,b \ge 1, a+b \le N-2)\quad \Rightarrow \quad \lambda_r = 0 \quad\forall 1<r<N-2  \]
+		Теперь, \(\lambda_1 = \dfrac{\partial \beta}{\partial s_1}\) посмотрим на весовые соотношения на \(s_1\) и \(\beta\). Для \(\lambda_1 \neq 0\) необходимо
+		\begin{gather*}
+				\dfrac{N-2}{N-1} = \wt{s_1} = \wt{\beta} = \dfrac{N}{2(N-1)}\\
+				\Downarrow\\
+				\dfrac{N-2}{2} = 1\\
+				N = 4
+		\end{gather*}
 	\end{proof}
 \end{document}
