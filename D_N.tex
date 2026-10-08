@@ -59,7 +59,7 @@
 Пусть есть фундаментальное соотношение редукции
 	\begin{equation}
 		e_1^{\circ(N-1)}
-		=
+		= P(e_0, \dots, e_{N-2}, h) = 
 		\sum_{k=0}^{N-2}\alpha_k(s,\tau)e_k
 		+\beta(s,\tau)h, \quad \text{где } \quad \alpha_k(0)=0,\qquad\beta(0)=0.
 		\label{eq:fundamental_relation} 
@@ -168,5 +168,16 @@
 				\dfrac{N-2}{2} = 1\\
 				N = 4
 		\end{gather*}
+	\end{proof}
+	\begin{theorem}
+		Существует изоморфизм многообразий Дубровина-Фробениуса \(M \simeq M_{D_N}\) при \(N \geq 5\)
+	\end{theorem}
+	\begin{proof}
+		Посмотрим на \(s_1\). В силу весовых соотношений, \(s_1\) может присутствовать только в \(\alpha_1\), 
+		\[\operatorname{wt}(s_{1}) = \dfrac{N-2}{N-1} = \operatorname{wt}(\alpha_{1}) > \operatorname{wt}(\alpha_{k>1})\]
+		Значит, если \(B_1=0\), то умножение не зависит от \(s_1\) вовсе, а значит производная Ли по \(e_1\) равна 0. Пользуясь условием интегрируемости, получаем что 
+		\[\operatorname{Lie}_{e_2}(\circ) = \operatorname{Lie}_{e_1\circ e_1}(\circ) = e_1 \circ \operatorname{Lie}_{e_1}(\circ) + \operatorname{Lie}_{e_1}(\circ) \circ e_1 = 0\]
+		Индуктивно получим, что \[\forall k; \operatorname{Lie}_{e_k}(\circ) = 0.\]
+		Так как \(\lambda_k = \dfrac{\partial \beta}{\partial s_1} = 0\), либо \(\dfrac{\partial P}{\partial \tau} = 0\), либо \(\dfrac{\partial \beta(s, \tau)}{\partial \tau} \neq 0\).
 	\end{proof}
 \end{document}
