@@ -179,7 +179,6 @@ L_M=\operatorname{Spec}^{an}_{\mathcal O_M}(T_M,\circ)\subset T^*M, \qquad \math
 Легко заметить, что любое многообразие Дубровина-Фробениуса это F-многообразие.
 В данном случае эйлерово поле это такое поле \(E\), что \(\operatorname{Lie}_E(\circ) = 1 \cdot \circ\)
 \section{Многообразия простых особенностей.}
-Зачастую многообразие задаётся ассоциированной с ним простой особенностью.\\
 Рассмотрим простую особенность типа \(A_{\mu}\) заданную многочленом \(f_{A_{\mu}} = \frac{1}{\mu+1}x^{\mu +1}\). Ассоциированное с ним многообразие Дубровина-Фробениуса определим так:\par 
 рассмотрим многочлен \[\Lambda = f_{A_{\mu}} + \sum_{0 \leq k < \mu} s_k x^k\] и фактор \[\mathbb{C}[x, s_0, s_1, \dots, s_\mu]\Big/(\partial_x \Lambda)\]  
 
@@ -244,10 +243,9 @@ x^i.
        e_k \cdot e_1 = c_{k1}^{k+1} e_{k+1} + \sum^k_{t = 0} c^t_{k1} e_t &\Rightarrow\\
        \Rightarrow & \hspace{3pt}e_{k+1} = \dfrac{1}{c_{k1}^{k+1}} \left( e_k\cdot e_1  - \sum^k_{t = 0} c^t_{k1} e_t \right)
    \end{align*}
-   \begin{rem}
-       \(c^t_{k1}(0) = 0\) если \(t \neq k+1\), а \(0 \neq c^{k+1}_{k1} = const \in \mathbb{C}\)
-   \end{rem}
-   \begin{proof}
+   Заметим,что 
+     \(c^t_{k1}(0) = 0\) если \(t \neq k+1\), а \(0 \neq c^{k+1}_{k1} = const \in \mathbb{C}\)
+	Это верно, так как 
        \begin{itemize}
            \item \(t > k+1 \Rightarrow\operatorname{wt}(c^t_{k1}) < 0 \Rightarrow  c^t_{k1} = 0\)
            \item \(t < k+1 \Rightarrow\operatorname{wt}(c^t_{k1}) > 0 \Rightarrow c^t_{k1}(0) = 0\), так как зануляются свободные члены.
@@ -255,7 +253,6 @@ x^i.
            Пользуясь предыдущими пунктами при ограничении в ноль получаем \[e_ke_1 = c_{k1}^{k+1}e_{k+1}\] так как все остальное обращается в ноль. Для изоморфизма \(\varphi\) по предположению индукции получаем 
            \[c_{k1}^{k+1}\varphi(e_{k+1}) = \varphi(c_{k1}^{k+1}e_{k+1}) =\varphi(e_ke_1) = \varphi(e_k)\varphi(e_1) = c_kc_1x^{k+1} \neq 0 \Rightarrow c_{k1}^{k+1} \neq 0\]
        \end{itemize}
-   \end{proof}
    Из этого замечания выражение выше корректно. Значит, пользуясь предположением индукции получаем, что \(e_{k+1}\) выражается через \(e_0, e_1, \dots, e_1^{k+1}\).\\
    Рассмотрим исходное структурное равенство в новом базисе:
    \[e_{\mu-1} e_1 = \sum_{k = 0}^{\mu -1} c^k_{n-1,1} e_k\]
@@ -321,69 +318,10 @@ T_pM \simeq \mathbb{C}\left[x, s_0, \dots, s_{\mu - 1}\right]/\left(x^{\mu} - \s
     \alpha_{0} = B_{1}&s_{1} + C_{1}\\
     B_i \in \mathbb{C};\hspace{20pt}& \hspace{20pt}\operatorname{deg}C_i > 1
 \end{align*}
-\iffalse Пусть хоть в одной из в одной структурных констант \(\alpha_m\) нет линейного члена соответствующей \(s_j\), т.е. \(B_j = 0\).\par
-Рассмотрим ограничение \( \forall k \neq j;s_k = 0, s_j = D = const \neq 0\). Тогда, на прямой \(P = \{p\in M; s_j = D\}\) многообразие полупросто, так как \[\forall p_0 \in P, \alpha_k(p_0) = 0, C_j(p_0) = 0\]\fi
 А значит в нуле получаем \(\alpha_k(0) = B_{k+1} \cdot 0 + C_{k+1}(0) = 0\) и
 \[
 T_0M \simeq \mathbb C[x]/(x^\mu),
 \].
-
-
-
-
-
-
-
-
-
-
-
-
-\iffalse
-Сделаем следующую замену координат и, соответственно, структурных констант: 
-\[
-\begin{gathered}
-    u_0 = s_0\\
-    u_k = \alpha_{k-1}\\
-    \Downarrow\\
-    T_pM \simeq \mathbb{C}\left[x, s_0, \dots, s_{\mu - 1}\right]/\left(x^{\mu} - \sum_{k = 0}^{\mu - 1}\alpha_k (s)\cdot x^k\right) \simeq \mathbb{C}\left[x, u_0, \dots, u_{\mu - 1}\right]/\left(x^{\mu} - \sum_{k = 0}^{\mu - 2} u_k\cdot x_k\right)
-\end{gathered}
-\]
-
-Заметим что из предположения \(B_j = 0\) следует \(\operatorname{Lie}_{u_{j+1}}(\circ)\big|_{s = u = 0} = 0\), так как при взятии производной и ограничении в ноль в членах со степенями вхождения \(s_j\) не меньше 2ух остается как минимум линейная зависимость от \(u_j\), то есть из \(B_j = 0\) следует \[\operatorname{Lie}_{u_{j}}(\circ)\big|_{s = u = 0} = 0\]
-Пользуясь леммой 2 получаем, что \(\forall j, \)
-\[
-    T_pM \simeq \mathbb{C}\left[x, u_0, \dots, u_{\mu - 1}\right]/\left(x^{\mu}\right)
-\], что противоречит изначальному предположению.
-Тогда 
-\begin{equation}
-\label{part}
-\begin{gathered}
-\forall q;\hspace{10pt}\partial_{s_j}\alpha_q(0) = 0\\
-\Downarrow\\
-(\operatorname{Lie}_{e_j}(\circ))\big|_{s = 0} = 0
-\end{gathered}
-\end{equation}
-Возьмем \(X = Y =e_{j}\) и проверим условие интегрируемости (\ref{itegr}) в \(s = 0\)
-\[
-    \operatorname{Lie}_{e_j^{\circ2}}(\circ)\big|_{s=0} = e_j\circ \operatorname{Lie}_{e_j}(\circ)\big|_{s=0} + e_j\circ \operatorname{Lie}_{e_j}(\circ)\big|_{s=0}
-\]
-Правая часть равна 0 из (\ref{part}). Рассмотрим левую часть подробнее.
-\[e_j^{\circ2} = e_{2j}\]
-Если \(2j \geq \mu\) то используем факт, что \(x^{\mu} - \sum_{k = 0}^{\mu - 1}\alpha_k \cdot x_k = 0\), т.е.
-\[
-e_j^{\circ2} = \sum_{k = 0}^{\mu - 1}\alpha_k(0) \cdot e_k 
-\]
-\fi
-
-
-
-
-
-
-
-
- 
 
 \begin{lem}\label{lem3}
     \(B_r=r \cdot B_1\)
@@ -497,6 +435,7 @@ B_r\neq 0
 \text{ для всех }r=1,\ldots,\mu-1.
 \]
 \end{proof}
+%написать гипотезу
 \begin{theorem}[Борис Дубровин]
     Любое неприводимое полупростое в общем полиномиальное МДФ, квазиоднородное с весами  \(\operatorname{wt}(t_i) = \dfrac{i}{\mu+1}, (i = 0, . . . , \mu)\) изоморфно МДФ для особенности типа \(A\)
 \end{theorem}
