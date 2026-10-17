@@ -1,0 +1,164 @@
+\section{Основная теорема.}
+Перейдем к первой мотивирующей теореме.\\
+Пусть \(M\) неприводимо и полупросто в общем, а значит не полупросто везде. Тогда имеет место следующая теорема.
+\begin{theorem}
+	Пусть для полупростого в общем неприводимого многообразия \(M\), выполнено
+	\[
+	T_pM \simeq \mathbb{C}[x]/\left(x^{\mu} - \sum_{k = 0}^{\mu - 2} \pi_k s_{k+1} \cdot x^k\right), \text{где } \pi_k \in \mathbb{C}.
+	\]  Тогда \(M\) изоморфно многообразию простой особенности \(A_{\mu}\).
+\end{theorem}
+\begin{proof}
+	Заметим, что если \(\exists j, \pi_j = 0\), то производная Ли умножения \(\circ\) по полю \(\tang[e_{j+1}]\) равна 0, и, следовательно так как умножение не зависит в принципе от \(s_{j+1}\).\[\operatorname{Lie}_{e_{j+1}}(\circ) = 0,\] а значит \(e_{j+1}\) эйлерово поле веса 0 по определению, а значит является единичным полем \(e_1\), умноженным на некоторую константу \(\mathbf{c}\in \mathbb{C}\) [Теорема 6.2]\cite{hertling1999multiplicationtangentbundle}. Следовательно, \(j=0\), а значит \[\operatorname{Lie}_{e_k}(\circ) = \operatorname{Lie}_{(e_1)^k}(\circ) = 0 \] из \ref{integr}, значит \(\forall k, \pi_k =0 \Rightarrow T_pM \simeq \mathbb{C}\left[x, s_0, \dots, s_{\mu - 1}\right]/ (x^\mu)\), это противоречит нашему предположению о том что \(M\) полупросто в общем, значит все \(\pi_k \neq 0\). Нормализуя, получаем изоморфизм \[ T_pM \simeq \mathbb{C}[x]/\left(x^{\mu} - \sum_{k = 0}^{\mu - 2} s_{k+1} x^k\right)\simeq T_pM_{A_\mu}\]
+\end{proof}
+\subsection{Общий случай.}
+Докажем обобщение этого факта для произвольного вида \(T_pM\)
+\par
+Пусть нам дано полиномиальное неприводимое полупростое в общем МДФ \(M\) с градуировкой \(A_\mu\). Пользуясь леммой 1 приведем его к следующему виду:
+\[
+T_pM \simeq \mathbb{C}[x]/\left(x^{\mu} - \sum_{k = 0}^{\mu - 1}\alpha_k (s)\cdot x^k\right)
+\]
+Заметим, что исходя из полиномиальности \(M\) и общей квазиоднородности, все \(\alpha_k\) являются многочленами из \(\mathbb{C}[s_0, \dots, s_{\mu-1}]\) и имеют веса \(\operatorname{wt}(\alpha_k) = \dfrac{\mu - k}{\mu + 1}\).\par 
+\begin{lem}\label{lem2}
+	\(T_0M \simeq \mathbb C[x]/(x^\mu)\)
+\end{lem}
+\begin{proof}
+	Каждая из \(\alpha_{k}\) это квазиоднородный многочлен веса \(\wt{\alpha_{k}} > 0\). Так как вес  константы равен \(\wt{c \in \mathbb{C}} = 0\), свободных членов в этих многочленах нет. Следовательно, \[T_0M \simeq \mathbb{C}[x]/\left(x^{\mu} - \sum_{k = 0}^{\mu - 1}\alpha_k (0)\cdot x_k\right) = \mathbb C[x]/(x^\mu).\]
+\end{proof}
+\iffalse
+Заметим, что из весовых соотношений мы получаем, следующую систему равенств.
+\begin{align*}
+	\operatorname{wt}(\alpha_{\mu - 1}) = & \dfrac{\mu - \mu + 1}{\mu + 1} = \dfrac{1}{\mu + 1}\\
+	\operatorname{wt}(\alpha_{\mu - 2}) = & \dfrac{\mu - \mu + 2}{\mu + 1} = \dfrac{2}{\mu + 1} = \operatorname{wt}(s_{\mu - 1})\\
+	&\dots\\
+	\operatorname{wt}(\alpha_{0}) = & \dfrac{\mu}{\mu + 1} = \operatorname{wt}(s_{1})
+\end{align*}
+Следовательно, так как каждая из \(\alpha_k\) это многочлен \(\mathbb{C}[s_0, \dots, s_{\mu-1}]\) и веса всех \(s_i\) больше чем \(\operatorname{wt}(\alpha_{\mu - 1})\), то \(\alpha_{\mu - 1} = 0\) Представим каждое \(\alpha_k\) в виде линейная часть + высшие степени, не зависящие линейно от \(s\) вообще, в силу градуировки.
+
+\begin{align*}
+	\alpha_{\mu - 2} = B_{\mu - 1}&s_{\mu - 1} + C_{\mu -1}\\
+	&\dots\\
+	\alpha_{0} = B_{1}&s_{1} + C_{1}\\
+	B_i \in \mathbb{C};\hspace{20pt}& \hspace{20pt}\operatorname{deg}C_i > 1
+\end{align*}
+А значит в нуле получаем \(\alpha_k(0) = B_{k+1} \cdot 0 + C_{k+1}(0) = 0\) и
+\[
+T_0M \simeq \mathbb C[x]/(x^\mu),
+\].
+\fi
+Так как каждая из \(\alpha_k\) это многочлен \(\mathbb{C}[s_0, \dots, s_{\mu-1}]\) и веса всех \(s_i\) больше чем \(\operatorname{wt}(\alpha_{\mu - 1})\), то \(\alpha_{\mu - 1} = 0\) Представим каждое \(\alpha_k\) в виде линейная часть + высшие степени, не зависящие линейно от \(s\) вообще, в силу градуировки.  Дифференцируя по \(s_k\) и ограничивая в 0 получаем числа в соответствующих производных. 
+
+\begin{equation}
+	B_k \defeq \left.\frac{\partial\alpha_k}{\partial s_k}\right|_0 \in \mathbb{C} \qquad\left.\frac{\partial\alpha_k}{\partial s_r}\right|_0=0 \quad\text{если }k\ne r.
+	\label{eq:weight_diagonal}
+\end{equation}
+Так же напомним, что 
+\begin{equation}
+	e_a\circ e_b=e_{a+b}
+	\qquad\text{для }a+b\le \mu-1.
+	\label{eq:low_product}
+\end{equation} 
+\begin{lem}[$A_\mu$]
+	\[B_r=rB_1,\text{для } r=1,\ldots,\mu-2.\]
+\end{lem}
+\begin{proof}
+	Пусть $m_s$ тензор умножения в точке $s=(s_0,\ldots,s_{\mu-1})$ и
+	\[D_r:=\left.\frac{\partial m_s}{\partial s_r}\right|_{s=0}=\bigl(\Lie_{e_r}(\circ)\bigr)_0.\]
+	$D_r$ симмертческое билинейное отображение \(D_r:T_0M\times T_0M\longrightarrow T_0M.\)
+	Выберем $p,q\ge 1$ т.ч. \(p+q=\mu\), из ассоциативности и фундаментального соотношения \eqref{eq:fundamental_relation},
+	\[e_p\circ e_q=e_1^{\circ(\mu)}
+	=
+	\sum_{k=0}^{\mu-1}\alpha_k(s)e_k.\]
+	Дифференцируя по $s_r$ в нуле и используя  \eqref{eq:weight_diagonal}, получаем
+	\begin{equation}
+		D_r(e_p,e_q)=B_r e_r,
+		\label{eq:Dr_boundary}
+	\end{equation}
+	%Теперь, для нечетного \(N\), все \(\lambda_r\) из градуировки,  для четного же \(N\), только для одного \(r\) возможно $\lambda_r = \left.\frac{\partial\beta}{\partial s_r}\right|_0.\ne0$ \par
+	Пусть теперь $a,b\ge1$ и $a+b\le \mu-1$ Из \eqref{eq:low_product},
+	\(e_a\circ e_b=e_{a+b}.\)
+	Применим условие интегрируемости
+	\[\Lie_{X\circ Y}(\circ)
+	=
+	X\circ\Lie_Y(\circ)+Y\circ\Lie_X(\circ)\]
+	с $X=e_a$ и $Y=e_b$, и ограничим в ноль. Получаем
+	\begin{equation}
+		\begin{aligned}
+			D_{a+b}(U,V) = \bigl(\Lie_{e_{a+b}}(U\circ V)\bigr)_0
+			=&
+			\bigl(e_a \circ \Lie_{e_b}(U\circ V)\bigr)_0 + \bigl(\Lie_{e_a}(U\circ V) \circ e_b\bigr)_0
+			=\\=&
+			e_a\circ_0D_b(U,V)
+			+e_b\circ_0D_a(U,V)
+			\label{eq:HM_linearized} 
+			\qquad \forall U,V\in T_0M.
+		\end{aligned}
+	\end{equation}
+	
+	Возьем $U=e_p$ и $V=e_q$. По \eqref{eq:Dr_boundary}, слева получаем
+	\[
+	D_{a+b}(e_p,e_q)
+	=B_{a+b}e_{a+b}.
+	\]
+	Справа,
+	\begin{align*}
+		e_a\circ_0D_b(e_p,e_q)
+		&=e_a\circ_0(B_b e_b) = B_b e_{a+b} \\
+		e_b\circ_0D_a(e_p,e_q)
+		&=e_b\circ_0(B_a e_a) = B_a e_{a+b}.
+	\end{align*}
+	%Заметим, что 
+	%\(e_c\circ_0 h=0
+	%\qquad\text{for every }c\ge1,\)
+	%другими словами $x^cy=0$, что следует из $2xy=0$.
+	%Значит, произведения, содержащие \(\lambda\) в \eqref{eq:HM_linearized} исчезают. 
+	\[
+	B_{a+b} e_{a+b} = B_be_{a+b}+B_ae_{a+b} \qquad (a,b \ge 1, a+b \le \mu-2)
+	\]
+	Сравнивая коэффициенты и делая индукцию получаем
+	\[
+	B_r=rB_1,\qquad r=1,\ldots,\mu-2.
+	\]
+\end{proof}
+\begin{lem} \label{lem4}
+	Существует такое \(q\), что \(B_q \neq 0\)
+\end{lem}
+\begin{proof}
+	Посмотрим теперь на \(s_1\). В силу весовых соотношений, \(s_1\) может присутствовать только в \(\alpha_0\), так как вес \(\operatorname{wt}(s_1)\) равен 
+	\[\operatorname{wt}(s_{1}) = \dfrac{\mu}{\mu + 1} = \operatorname{wt}(\alpha_{0}) > \operatorname{wt}(\alpha_{k>0})\]
+	Значит, если \(B_1=0\), то умножение не зависит от \(s_1\) вовсе, а значит производная Ли по \(e_1\) равна 0. Пользуясь условием интегрируемости, получим что 
+	\[\operatorname{Lie}_{e_2}(\circ) = \operatorname{Lie}_{e_1\circ e_1}(\circ) = e_1 \circ \operatorname{Lie}_{e_1}(\circ) + \operatorname{Lie}_{e_1}(\circ) \circ e_1 = 0\]
+	Индуктивно получим, что \[\forall k; \operatorname{Lie}_{e_k}(\circ) = 0\]
+	а значит \(\forall p; T_pM \simeq \mathbb{C}\left[x, s_0, \dots, s_{\mu - 1}\right]/ (x^\mu)\), а значит многообразие не полупросто нигде, а это противоречит полупростоте в общем.
+	Из доказанного по лемме \ref{lem3} следует 
+	\[
+	\exists q; B_q\neq 0
+	\quad\Longrightarrow\quad
+	B_r\neq 0
+	\text{ для всех }r=1,\ldots,\mu-1.
+	\]
+\end{proof}
+%написать гипотезу
+\begin{theorem}[Борис Дубровин]
+	Любое неприводимое полупростое в общем полиномиальное МДФ, квазиоднородное с весами  \(\operatorname{wt}(t_i) = \dfrac{i}{\mu+1}, (i = 0, . . . , \mu)\) изоморфно МДФ для особенности типа \(A\)
+\end{theorem}
+\begin{proof}
+	Пользуясь леммой 1, 2 и 3 последовательно, приведем многообразие к виду 
+	\[
+	T_pM \simeq \mathbb{C}[x]/\left(x^{\mu} - \sum_{k = 0}^{\mu - 1}\alpha_k (s)\cdot x_k\right)
+	\]
+	, где 
+	\begin{align*}
+		\alpha_{\mu - 2} = B_{\mu - 1}&s_{\mu - 1} + C_{\mu -1}\\
+		&\dots\\
+		\alpha_{0} = B_{1}&s_{1} + C_{1}\\
+		B_i \in \mathbb{C};\hspace{20pt}& \hspace{20pt}\operatorname{deg}C_i > 1
+	\end{align*} и все \(B_j \neq 0\) из лемм \ref{lem3} и \ref{lem4}.
+	Построим изоморфизм явно.
+	\[\begin{gathered}
+		u_0 = s_0\\
+		u_k = \alpha_{k-1}\\
+	\end{gathered}
+	\]
+	Это изоморфизм многообразий Дубровина-Фробениуса, так как ранг этого отображения полный, в силу верхнетреугольности его дифференциала и того что на диагонали его матрицы якоби стоят ненулевые коэффициенты: \[\forall j, \dfrac{\partial u_j}{\partial s_j} = \dfrac{\partial \alpha_{j-1}}{\partial s_j} = B_j \neq 0.\] Значит это диффеоморфизм, а значит 
+	\[T_pM \simeq \mathbb{C}\left[x\right]/\left(x^{\mu} - \sum_{k = 0}^{\mu - 1}\alpha_k (s)\cdot x^k\right) \simeq \mathbb{C}\left[x\right]/\left(x^{\mu} - \sum_{k = 0}^{\mu - 2} u_k\cdot x^k\right) \simeq M_{A_\mu}\]
+\end{proof}

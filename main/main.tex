@@ -1,0 +1,24 @@
+\documentclass[a4paper, 10pt]{article}
+
+\input{preamble}
+\input{macros}
+
+
+\usepackage[
+backend=biber,
+style=alphabetic
+]{biblatex}
+
+\addbibresource{\subfix{main_lit.bib}}
+
+\begin{document}
+	
+	\input{sections/sec_1_intro}
+	\input{sections/sec_2_prelims}
+	\input{sections/sec_3_simple.tex}
+	\input{sections/sec_4_hyp.tex}
+	\input{sections/sec_5_main_theorem.tex}
+
+	
+	\printbibliography
+\end{document}

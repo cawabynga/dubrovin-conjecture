@@ -1,0 +1,115 @@
+\section{Постановка задачи.}
+\begin{defin}[МДФ]
+	Полиномиальное многообразие Дубровина-Фробениуса (МДФ) это риманово многообразие \((M, g)\), \(\operatorname{dim}(M) = \mu\) с гладкой структурой фробениусовой алгебры \((T_pM, \circ, e)\) в каждом касательном пространстве, для него выполнено несколько условий
+\end{defin}
+\iffalse
+\begin{equation}
+	\label{integr}
+	\begin{gathered}
+		\operatorname{Lie}_{X\circ Y}(\circ) = X\circ \operatorname{Lie}_Y(\circ) + Y\circ \operatorname{Lie}_X(\circ)
+	\end{gathered}
+\end{equation}
+\fi
+Мы будем смотреть на эти алгебры как на векторные касательные пространства снабжённые ассоциативным умножением.\par
+Одно условие это квазиоднородность этого умножения: существует нормализованная квазиоднородная полиномиальная функция \(\mathcal{F}: M \to \mathbb{C}\) называемая потенциалом, такая что  \begin{equation}
+	\begin{gathered}
+		\tang[s^\alpha] \circ \tang[s^\beta] = c^\gamma_{\alpha\beta}\tang[s^{\gamma}]\\
+		c_{\alpha\beta\gamma}(t) = \dfrac{\partial^3 \mathcal{F}}{\partial s^{\alpha}\partial s^{\beta}\partial s^{\gamma}}\\
+		c^\gamma_{\alpha\beta} = \eta^{\gamma\epsilon}c_{\epsilon\alpha\beta}(s)
+	\end{gathered}
+\end{equation}
+Где
+\[
+\eta_{\alpha\beta} \defeq c_{0\alpha\beta}(s)
+\]
+является постоянной невырожденной матрицей, и
+\[
+(\eta^{\alpha\beta}) \defeq (\eta_{\alpha\beta})^{-1}.
+\]
+Мы будем использовать матрицы \((\eta_{\alpha\beta})\) и \((\eta^{\alpha\beta})\) для поднятия и опускания индексов. Второе условие это требование конкретного вида матрицы \(\eta\):
+\begin{gather} \eta_{\alpha\beta} = \eta(\tang[s^\alpha], \tang[s^\beta]) = c_{0\alpha\beta} = \delta^{\alpha + \beta}_{\mu-1}
+\end{gather}
+Само условие квазиоднородности выражается ввиде следующего равенства:
+\[\mathcal{F}(c^{d_0}s^0, \dots, c^{s_{\mu-1}}s^{\mu-1}) = d_\mathcal{F}\mathcal{F}(s^0,\dots, s^{\mu-1})\]
+для любого \(c \in \mathbb{C}\) и некоторых фиксированных констант \(d_0, \dots, d_{\mu-1}, d_\mathcal{F} \in \mathbb{C}\)\par
+Из существования спаривания векторов и явного вида этого спаривания верно, что \[\forall \alpha, \beta; \alpha + \beta = \mu - 1:\tang[s^\alpha]\circ \tang[s^\beta] = \tang[s^{\mu-1}] + \dots\]
+В мы будем называть \(\tang[s^{\mu-1}]\) цоколем.
+\par
+\begin{rem}
+	Обычно квазиоднородность задается существованием эйлерова поля.\par
+\end{rem}
+\begin{defin}[Эйлерово поле]
+	Поле \(E = E^\alpha(s)\tang[s^\alpha]\) называется элеровым если \[\operatorname{Lie}_E \mathcal{F} \defeq E^\alpha \partial_\alpha \mathcal{F} = d_\mathcal{F} \cdot \mathcal{F}\]
+\end{defin}
+Для требуемой квазиоднородности, \(E\) должно иметь вид \[E = \sum_\alpha d_\alpha s^\alpha\tang[s^\alpha]\]
+\begin{defin}[Изоморфизм]
+	Два многообразия Дубровина-Фробениуса изоморфны если они изоморфны как гладкие многообразия и индуцированные отображения касательных пространств это изоморфизмы фробениусовых алгебр, то есть уважают структуры умножения \(\circ\) и спаривания \(\eta\).
+\end{defin}
+Многообразия Дубровина-Фробениуса удобно представлять в виде семейств фактор-алгебр по некоторому многочлену.
+\begin{defin}[Градуировка МДФ]
+	Градуировка в касательном пространстве индуцируется эйлеровым полем и, следовательно, градуировкой на \(\mathcal{O}_{L_M}\).
+	Пусть \(M=\mathbb C^\mu\) с координатами \(s_0,\ldots,s_{\mu-1}.\)
+	Положим
+	\[
+	e_i=\frac{\partial}{\partial s_i},
+	\qquad i=0,\ldots,\mu-1.
+	\]
+	Пусть \( y_0,\ldots,y_{\mu-1}\) это координаты в слоях \(T^*M\), двойственные к базису \(e\). Тогда каноническая \(1\)-форма на \(T^*M\) имеет вид
+	\[
+	\alpha=\sum_{j=0}^{\mu-1}y_j\,ds_j.
+	\]
+	Определим идеал \(\mathcal{I}_M\) как \[\mathcal{I}_M \defeq \left(y_0 - 1, y_iy_j - \sum c_{ij}^k(s)y_k\right)\]
+	\(\mathcal{I}_M\) задает структуру на \(T_pM\) следующим образом:\[T_pM \simeq \mathbb{C}[y_0, \dots, y_{\mu-1}]\Big/\mathcal{I}_M\]
+	Аналитический спектр, то есть множество точек, где каждая \(f \in \mathcal{I}_M\) зануляется, обозначим через
+	\[
+	L_M=\operatorname{Spec}^{an}_{\mathcal O_M}(T_M,\circ)\subset T^*M, \qquad \mathcal{O}_{L_M} = \left(\mathcal{O}_{T_pM}\Big/\mathcal{I}_M\right)\Big|_{L_M}
+	\]
+	Отображение \(\boldsymbol{\operatorname{a}}:T_M \rightarrow \pi_*\mathcal{O}_{L_M}\) определим так:
+	\[\boldsymbol{\operatorname{a}}(X)=\alpha(X)|_{L_M}\]
+	Теперь вычислим это отображение на базисном векторе \(e_i\)
+	\begin{gather*}
+		\alpha(e_i) = \sum_{j=0}^{\mu-1}y_j\,ds_j(e_i)\\
+		ds_j(e_i) = ds_j\left(\frac{\partial}{\partial s_i}\right) = \delta_{ij}\\
+		\Downarrow\\
+		\alpha(e_i)=y_i\\
+		\Downarrow\\
+		\boldsymbol{\operatorname{a}}(e_i)=\alpha(e_i)|_{L_M}=y_i|_{L_M}.
+	\end{gather*}
+	
+	Таким образом, \(\boldsymbol{\operatorname{a}}\) отправляет касательный вектор \(e_i\) в соответствующую двойственную координату \(y_i\), ограниченную на аналитический спектр.
+	
+	
+	Вес на \(TM\) определяется переносом веса с
+	\(\mathcal O_{L_M}\) через изоморфизм
+	\[\boldsymbol{\operatorname{a}}:T_M\longrightarrow \pi_*\mathcal O_{L_M}.\]
+	То есть для однородного векторного поля \(X\in TM\) положим
+	\begin{gather*}
+		\operatorname{wt}_{TM}(X)\defeq \operatorname{wt}_{\mathcal O_{L_M}}(\boldsymbol{\operatorname{a}}(X))\\
+		\Downarrow\\
+		\operatorname{wt}_{TM}(e_i) = \operatorname{wt}_{\mathcal{O}_{L_M}}(a(e_i)) = \operatorname{wt}_{\mathcal{O}_{L_M}}(y_i|_{L_M}), \text{так как } a(e_i)=y_i|_{L_M}
+	\end{gather*}
+	Вес \(c_{ij}^k\) определяется из умножения:
+	\begin{gather*}e_i\circ e_j = \sum c^k_{ij} e_k \\
+		\Downarrow\\
+		\operatorname{wt}(c^k_{ij}) = \operatorname{wt}(e_i) + \operatorname{wt}(e_j) - \operatorname{wt}(e_k)\end{gather*}
+\end{defin}
+Нам понадобятся еще несколько определений.
+\begin{defin}[Полупростое МДФ]
+	Пусть \(M\) это полиномиальное МДФ. Мы будем называть точку \(p \in M\) полупростой если алгебра \(T_pM\) полупростая. То есть существуют такие координаты \(t_0, \dots, t_{\mu-1}\), что умножение в точке \(p\) имеет вид \[\tang[t^\alpha]\circ_p\tang[t^\beta] = \delta^\alpha_\beta\]
+	Многообразие будем называть полупростым если существуют такие глобальные координаты \(t\), что в каждой точке умножение полупросто.
+\end{defin}
+\begin{defin}[Полупросте в общем МДФ]
+	Если умножение полупросто для общей точки, то многообразие называется полупростым в общем.
+\end{defin}
+В \cite{hertling} полупростые в общем многообразия называются массивными.
+\begin{defin}[Неприводимое МДФ]
+	Многообразие Дубровина-Фробениуса называется приводимым, если существуют такие координаты \(t_0, \dots, t_{\mu-1}\), такие что каждая из алгебр \(T_pM\) разбивается на неприводимые компоненты \(A_{k_1}, \dots, A_{k_l},\quad TpM = \bigoplus_i A_{k_i}, \quad A_{k_i}\circ A_{k_j} = 0\) где \(k_1, \dots, k_l\) это некоторое разбиение \(t_0, \dots, t_{\mu-1}\).
+\end{defin}
+\begin{defin}[F-manifold]
+	F-многообразием называется комплексное голоморфное многообразие с коммутативным, ассоциативным \(\mathcal{O}_M\)-билинейным умножением \(\mathcal{T}_M \times \mathcal{T}_M \to \mathcal{T}_M\) и с единичным полем \(e\), такое что 
+	\begin{gather}\label{integr}
+		\operatorname{Lie}_{X\circ Y}(\circ) = X\circ \operatorname{Lie}_Y(\circ) + Y\circ \operatorname{Lie}_X(\circ)
+	\end{gather}
+\end{defin}
+Легко заметить, что любое многообразие Дубровина-Фробениуса это F-многообразие.
+В данном случае эйлерово поле это такое поле \(E\), что \(\operatorname{Lie}_E(\circ) = 1 \cdot \circ\)
